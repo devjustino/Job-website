@@ -1,0 +1,40 @@
+<div id="top-container" class="container-fluid">
+    <h1 id="main-title" class="text-center">O job remoto que procura está aqui!!</h1>
+    <p id="main-subtitle" class="text-center">Temos diversas vagas para trabalho remoto!</p>
+    <form id="search-form" class="form-inline" action="/" method="GET">
+        <div class="form-group col-md-10">
+            <input type="text" class="form-control" id="job" name="job" placeholder="Digitite aqui a vaga que procura">
+        </div>
+
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary">Procurar</button>
+        </div>
+    </form>
+</div>
+
+<main>
+    <div id="jobs-container" class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {{#if search}}
+                    <h2 id="job-list-title">Veja se estas vagas é o que você procura:</h2>
+                {{else}}
+                    <h2 id="job-list-title">Veja as novas vagas em destaque</h2>
+                {{/if}}
+                <ul id="job-list" class="list-group">
+                    {{#each jobs}}
+                        <li class="list-group-item {{#if dataValues.new_job}} new-job{{/if}}">
+                            <img src="../imgs/compimg.jpg" alt="Company">
+                            <p>{{dataValues.company}}</p>
+                            <h2>{{dataValues.title}}</h2>
+                            <p>R$ {{dataValues.salary}}</p>
+                            <span class="new-job-label">Nova</span>
+                            <a class="btn btn-primary" href="/jobs/view/{{dataValues.id}}">Ver vaga</a>
+                        </li>
+                    {{/each}}  
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+
